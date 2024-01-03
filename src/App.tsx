@@ -1,26 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React, { useState } from 'react';
+import UsersTable from './UsersTable/UsersTable';
+import UserPosts from './Userpost/UserPosts';
+import './App.css'; 
 
-function App() {
+const App = () => {
+  const [selectedUserId, setSelectedUserId] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <UsersTable onSelectUser={(userId) => setSelectedUserId(userId)} />
+      {selectedUserId && <UserPosts userId={selectedUserId} />}
     </div>
   );
-}
+};
 
 export default App;
